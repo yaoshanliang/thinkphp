@@ -11,6 +11,6 @@
 use think\Route;
 
 Route::group('admin', function() {
-    Route::get('','admin/index/index');
+    Route::get('index','admin/index/index');
     Route::get('user','admin/user/index');
 });
