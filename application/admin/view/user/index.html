@@ -1,52 +1,226 @@
 {extend name="common/base" /}
 {block name="container"}
-<fieldset class="layui-elem-field layui-field-title">
-    <legend>后台账户</legend>
-</fieldset>
+<div class="layui-tab layui-tab-card my-tab" lay-filter="test" lay-allowclose="true">
+    <ul class="layui-tab-title">
+        <li class="layui-this" lay-id="0"><span>后台账户</span><i class="layui-icon layui-unselect layui-tab-close">ဆ</i></li>
+        <li lay-id="1">添加账户</li>
 
-<div class="my-btn-box">
-    <span class="fl">
-        <a class="layui-btn btn-add btn-default" id="btn-add-article">发布文章</a>
-        <a class="layui-btn layui-btn-danger radius btn-delect" id="btn-delete-all">批量删除</a>
-    </span>
-    <span class="fr">
-        <span class="layui-form-label">搜索条件：</span>
-        <div class="layui-input-inline">
-            <input type="text" autocomplete="off" placeholder="请输入搜索条件" class="layui-input">
+    </ul>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item  layui-show">
+            <div class="my-btn-box">
+            <span class="fl">
+                <a class="layui-btn site-demo-active" data-type="tabChange">添加账户</a>
+                <a class="layui-btn layui-btn-danger radius btn-delect">批量删除</a>
+            </span>
+            <span class="fr">
+                <span class="layui-form-label">搜索条件：</span>
+                <div class="layui-input-inline">
+                    <input type="text" autocomplete="off" placeholder="请输入搜索条件" class="layui-input">
+                </div>
+                <button class="layui-btn mgl-20">查询</button>
+            </span>
+            </div>
+            <div>
+            <table id="dateTable" class="layui-table">
+                <thead>
+                <tr>
+                    <th><input type="checkbox" class="my-checkbox" /></th>
+                    <th>名称</th>
+                    <th>型号</th>
+                    <th>规格</th>
+                    <th>价格</th>
+                    <th>简介</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="checkbox" class="my-checkbox" data-id="1" /></td>
+                    <td>心相印红悦卫生纸卷纸3层*12卷1</td>
+                    <td>X1121</td>
+                    <td>大</td>
+                    <td>￥25.5</td>
+                    <td>心相印红悦卫生纸卷纸3层*12卷</td>
+                    <td>
+                        <button class="layui-btn layui-btn-small">查看</button>
+                        <button class="layui-btn layui-btn-small layui-btn-normal">编辑</button>
+                        <button class="layui-btn layui-btn-small layui-btn-danger">删除</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
         </div>
-        <button class="layui-btn mgl-20">查询</button>
-    </span>
+
+        <div class="layui-tab-item my-btn-box">
+            <form class="layui-form layui-form-pane" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">长输入框</label>
+
+                    <div class="layui-input-block">
+                        <input type="text" name="title" autocomplete="off" placeholder="请输入标题" lay-verify="required"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">短输入框</label>
+
+                    <div class="layui-input-inline">
+                        <input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">日期选择</label>
+
+                        <div class="layui-input-block">
+                            <input type="text" name="date" id="date" autocomplete="off" class="layui-input"
+                                   onclick="layui.laydate({elem: this})">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">行内表单</label>
+
+                        <div class="layui-input-inline">
+                            <input type="number" name="number" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码</label>
+
+                    <div class="layui-input-inline">
+                        <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">请务必填写用户名</div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">范围</label>
+
+                        <div class="layui-input-inline" style="width: 100px;">
+                            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid">-</div>
+                        <div class="layui-input-inline" style="width: 100px;">
+                            <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">单行选择框</label>
+
+                    <div class="layui-input-block">
+                        <select name="interest" lay-filter="aihao">
+                            <option value=""></option>
+                            <option value="0">写作</option>
+                            <option value="1" selected="">阅读</option>
+                            <option value="2">游戏</option>
+                            <option value="3">音乐</option>
+                            <option value="4">旅行</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">行内选择框</label>
+
+                    <div class="layui-input-inline">
+                        <select name="quiz1">
+                            <option value="">请选择省</option>
+                            <option value="浙江" selected="">浙江省</option>
+                            <option value="你的工号">江西省</option>
+                            <option value="你最喜欢的老师">福建省</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select name="quiz2">
+                            <option value="">请选择市</option>
+                            <option value="杭州">杭州</option>
+                            <option value="宁波" disabled="">宁波</option>
+                            <option value="温州">温州</option>
+                            <option value="温州">台州</option>
+                            <option value="温州">绍兴</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select name="quiz3">
+                            <option value="">请选择县/区</option>
+                            <option value="西湖区">西湖区</option>
+                            <option value="余杭区">余杭区</option>
+                            <option value="拱墅区">临安市</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <div class="layui-input-block">
+                        <textarea id="LAY_demo_editor" placeholder="请输入内容" class="layui-textarea"></textarea>
+                    </div>
+                    <label class="layui-form-label">请输入内容</label>
+                </div>
+                <div class="layui-form-item">
+                    <button class="layui-btn" lay-submit="" lay-filter="sub">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
-<table id="dateTable" class="layui-table">
-    <thead>
-    <tr>
-        <th><input type="checkbox" class="my-checkbox" /></th>
-        <th>名称</th>
-        <th>型号</th>
-        <th>规格</th>
-        <th>价格</th>
-        <th>简介</th>
-        <th>操作</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td><input type="checkbox" class="my-checkbox" data-id="1" /></td>
-        <td>心相印红悦卫生纸卷纸3层*12卷1</td>
-        <td>X1121</td>
-        <td>大</td>
-        <td>￥25.5</td>
-        <td>心相印红悦卫生纸卷纸3层*12卷</td>
-        <td>
-            <button class="layui-btn layui-btn-small">查看</button>
-            <button class="layui-btn layui-btn-small layui-btn-normal">编辑</button>
-            <button class="layui-btn layui-btn-small layui-btn-danger">删除</button>
-        </td>
-    </tr>
-    </tbody>
-</table>
 
 
+
+
+<script>
+    layui.use('element', function(){
+        var $ = layui.jquery
+                ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+
+        //触发事件
+        var active = {
+            tabAdd: function(){
+                //新增一个Tab项
+
+                element.tabAdd('test', {
+                    title: '新选项'+ (Math.random()*1000|0) //用于演示
+                    ,content: '内容'+ (Math.random()*1000|0)
+                    ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+                })
+            }
+            ,tabDelete: function(othis){
+                //删除指定Tab项
+                element.tabDelete('demo', '44'); //删除：“商品管理”
+
+
+                othis.addClass('layui-btn-disabled');
+            }
+            ,tabChange: function(){
+                //切换到指定Tab项
+                element.tabChange('test', '1'); //切换到：用户管理
+            }
+        };
+
+        $('.site-demo-active').on('click', function(){
+            var othis = $(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+
+        //Hash地址的定位
+        //console.log(location);
+
+        var layid = location.hash.replace(/^#test=/, '');
+        element.tabChange('test', layid);
+
+        element.on('tab(test)', function(elem){
+            location.hash = 'test='+ $(this).attr('lay-id');
+        });
+
+    });
+</script>
 
 {/block}
