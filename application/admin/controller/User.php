@@ -11,13 +11,13 @@ class User extends Controller
         return view('user/index');
     }
 
-    public function miss()
+    public function create()
     {
-        return 'miss';
+        return view('user/create');
     }
 
-    public function hello()
+    public function postcreate()
     {
-        return 11;
+        return json(['code' => 0, 'message' => '失败']);
     }
 }

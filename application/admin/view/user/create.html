@@ -1,0 +1,60 @@
+{extend name="common/iframe" /}
+{block name="container"}
+<form class="layui-form layui-form-pane" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">账号</label>
+
+        <div class="layui-input-block">
+            <input type="text" name="title"  placeholder="" lay-verify="required" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+
+        <div class="layui-input-inline">
+            <input type="text" name="username" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">确认密码</label>
+
+        <div class="layui-input-inline">
+            <input type="text" name="username" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <button class="layui-btn layui-input-block" lay-submit="" lay-filter="sub">提交</button>
+    </div>
+</form>
+<script>
+    //Demo
+    layui.use('form', function(){
+        var form = layui.form();
+        var $ = layui.jquery;
+
+        //监听提交
+        form.on('submit(sub)', function(data){
+            console.log(data.field);
+            $.ajax({
+                type: 'post',
+                data: data.field,
+                url: "__ROOT__/admin/user",
+                success: function(res){
+                    if(res.code === 0) {
+                        layer.msg(res.message, {icon: 1});
+                    } else {
+                        layer.msg(res.message, {anim: 2});
+                    }
+                },
+                error: function(e){
+                    layer.msg('请求异常，请重试', {anim: 0, shift: 6});
+                }
+            });
+                return false;
+        });
+    });
+</script>
+{/block}
