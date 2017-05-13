@@ -4,8 +4,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">账号</label>
 
-        <div class="layui-input-block">
-            <input type="text" name="title"  placeholder="" lay-verify="required" class="layui-input">
+        <div class="layui-input-inline">
+            <input type="text" name="account"  placeholder="" lay-verify="required" class="layui-input">
         </div>
     </div>
 
@@ -13,7 +13,7 @@
         <label class="layui-form-label">密码</label>
 
         <div class="layui-input-inline">
-            <input type="text" name="username" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+            <input type="text" name="password" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
         </div>
     </div>
 
@@ -21,12 +21,12 @@
         <label class="layui-form-label">确认密码</label>
 
         <div class="layui-input-inline">
-            <input type="text" name="username" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+            <input type="text" name="password_confirmation" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <button class="layui-btn layui-input-block" lay-submit="" lay-filter="sub">提交</button>
+        <button class="layui-btn layui-input-block" lay-submit="" lay-filter="submit">提交</button>
     </div>
 </form>
 <script>
@@ -36,7 +36,7 @@
         var $ = layui.jquery;
 
         //监听提交
-        form.on('submit(sub)', function(data){
+        form.on('submit(submit)', function(data){
             console.log(data.field);
             $.ajax({
                 type: 'post',
@@ -44,6 +44,8 @@
                 url: "__ROOT__/admin/user",
                 success: function(res){
                     if(res.code === 0) {
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index); //再执行关闭
                         layer.msg(res.message, {icon: 1});
                     } else {
                         layer.msg(res.message, {anim: 2});
@@ -53,7 +55,7 @@
                     layer.msg('请求异常，请重试', {anim: 0, shift: 6});
                 }
             });
-                return false;
+            return false;
         });
     });
 </script>

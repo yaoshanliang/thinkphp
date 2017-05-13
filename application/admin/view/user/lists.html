@@ -1,0 +1,71 @@
+{extend name="common/iframe" /}
+{block name="container"}
+
+            <div class="my-btn-box">
+            <span class="fl">
+                <a class="layui-btn site-demo-active" id="create" >添加账户</a>
+                <a class="layui-btn layui-btn-danger radius btn-delect">批量删除</a>
+            </span>
+                <span class="fr">
+                <span class="layui-form-label">搜索条件：</span>
+                <div class="layui-input-inline">
+                    <input type="text" autocomplete="off" placeholder="请输入搜索条件" class="layui-input">
+                </div>
+                <button class="layui-btn mgl-20">查询</button>
+            </span>
+            </div>
+            <div>
+                <table id="dateTable" class="layui-table">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" class="my-checkbox" /></th>
+                        <th>账号</th>
+                        <th>邮箱</th>
+                        <th>手机号</th>
+                        <th>创建时间</th>
+                        <th>更新时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {volist name="data" id="admin"}
+                    <tr>
+                        <td><input type="checkbox" class="my-checkbox" data-id="1" /></td>
+                        <td>{$admin.account}</td>
+                        <td>{$admin.email}</td>
+                        <td>{$admin.phone}</td>
+                        <td>{$admin.create_time}</td>
+                        <td>{$admin.update_time}</td>
+                        <td>
+                            <button class="layui-btn layui-btn-small">查看</button>
+                            <button class="layui-btn layui-btn-small layui-btn-normal">编辑</button>
+                            <button class="layui-btn layui-btn-small layui-btn-danger">删除</button>
+                        </td>
+                    </tr>
+                    {/volist}
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+<script>
+    layui.use(['layer', 'element'], function(){
+        var layer = layui.layer;
+        var $ = layui.jquery
+                ,element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+        $('#create').on('click', function () {
+            layer.open({
+                type: 2,
+                title: '添加',
+                content: ["__ROOT__/admin/user/create", 'no'],
+                maxmin: true,
+                area: ['500px', '400px']
+            });
+        });
+    });
+</script>
+
+{/block}
